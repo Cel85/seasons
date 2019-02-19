@@ -2,20 +2,21 @@ import React from 'react';
 import ReactDOM from  'react-dom';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-		//only time we do direct assigment to this.state
-		this.state = {lat: null, errorMessage: ''};
+	state = {lat: null, errorMessage: ''};
 
+	componentDidMount(){
+		//also, do some API requests
+		console.log("component is rendered");
+
+		//data loading goes to didMount method
 		window.navigator.geolocation.getCurrentPosition(
-			position => {
-				//we call setState to update state
-				this.setState({lat: position.coords.latitude});
-			},
-			err => {
-				this.setState({errorMessage: err.message})
-			}
+			position => this.setState({lat: position.coords.latitude}),
+			err => this.setState({errorMessage: err.message})
 		);
+	}
+
+	componentDidUpdate(){
+		console.log("component updated and rerendered");
 	}
 
 	//render is requirement
@@ -31,8 +32,6 @@ class App extends React.Component {
 		if(!this.state.errorMessage && !this.state.lat){
 			return <div>Loading..</div>;
 		}
-
-
 	}
 }
 
