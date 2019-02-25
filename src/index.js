@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from  'react-dom';
 
 class App extends React.Component {
-	state = {lat: null, errorMessage: ''};
+	state = {lat: null, errorMessage: ''};//default values
 
 	componentDidMount(){
 		//also, do some API requests
