@@ -1,17 +1,21 @@
 import React from 'react';
 
+const gateSeason = (lat, month) => {
+	if(month > 2 && month < 9){
+		return lat > 0 ? 'summer' : 'winter';
+	} else {
+		return lat > 0 ? 'winter' : 'summer';
+	}
+};
+
 const SeasonDisplay = (props) => {
 
 	const lat = props.lat;
-	var message = '';
-	if(lat>0){
-		message ='BRR ZIMA JE';
-	}
-	else {
-		message ='LJETO JE :)';
-	}
+	var  month =   new Date().getMonth();
+	const season = gateSeason(lat, month);;
+
 	return (
-		<div>{message}</div>
+		<div>{season}</div>
 	);
 }
 
